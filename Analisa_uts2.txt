@@ -1,0 +1,53 @@
+1. Perbandingan Hasil Visual Tiap Filter
+a. Low Pass Filter (LPF / Blur)
+Hasil gambar menjadi lebih halus, detail kecil banyak yang hilang.
+Tepi objek menjadi samar atau blur.
+Tekstur gambar berkurang karena nilai piksel digantikan dengan nilai rata-rata tetangganya.
+Noise atau gangguan kecil juga hilang.
+Kesimpulan visual: gambar tampak lebih lembut dan kurang detail.
+b. High Pass Filter (HPF / Deteksi Tepi)
+Sebagian besar area gambar menjadi gelap.
+Garis tepi (edges) terlihat sangat jelas dan terang.
+Detail halus diperkuat dan area datar menjadi gelap atau hitam.
+Kesimpulan visual: hanya bagian tepi penting yang ditampilkan.
+c. Band Pass Filter (BPF / Penajaman)
+Gambar tampak lebih tegas dibanding gambar asli.
+Kontras pada tepi meningkat sehingga objek terlihat lebih jelas.
+Efeknya seperti mempertegas detail dengan menggabungkan frekuensi tinggi dan rendah.
+Kesimpulan visual: gambar tetap utuh tapi tampak lebih tajam (sharpening).
+Ringkasannya:
+LPF: menghasilkan gambar blur dan halus dengan detail hilang.
+HPF: menampilkan tepi tegas dan area lain menjadi gelap.
+BPF: gambar lebih tajam dari gambar asli.
+
+2.Perbandingan Nilai Piksel Rata-rata
+a. LPF
+Nilai rata-rata piksel mendekati nilai tengah.
+Karena LPF mengambil nilai rata-rata tetangga, kontras gambar jadi lebih stabil dan biasanya menurun sedikit.
+Rata-rata piksel LPF cenderung naik sedikit atau stagnan.
+b. HPF
+HPF menghasilkan banyak area gelap dengan nilai piksel rendah dan beberapa garis terang (tepi).
+Nilai negatif pada konvolusi diangkat ke nol sehingga rata-rata piksel menurun drastis.
+Rata-rata piksel HPF sangat kecil.
+c. BPF
+Karena BPF menggabungkan efek edge (high frequency) dan citra asli (low frequency),
+nilai piksel meningkat di area tepi dan stabil di area datar.
+Rata-rata piksel BPF sedikit lebih tinggi dari citra asli.
+Ringkasannya:
+LPF: rata-rata piksel sedikit naik atau stabil karena smoothing.
+HPF: rata-rata piksel turun drastis karena area gelap dominan.
+BPF: rata-rata piksel sedikit naik karena penajaman tepi.
+
+3. Hubungan Domain Spasial & Domain Frekuensi
+Domain Spasial: operasi dilakukan langsung pada piksel menggunakan konvolusi kernel 3×3 seperti LPF, HPF, dan BPF yang kamu lakukan.
+Domain Frekuensi: gambar dipandang sebagai sinyal frekuensi, dengan frekuensi rendah mewakili area datar dan frekuensi tinggi mewakili tepi atau noise.
+Penjelasan hubungan filter:
+LPF melewatkan frekuensi rendah (area halus) dan menghilangkan frekuensi tinggi (tepi/detail).
+HPF melewatkan frekuensi tinggi (tepi) dan menghilangkan frekuensi rendah (area datar).
+BPF melewatkan frekuensi tertentu, menggabungkan frekuensi rendah dan tinggi untuk hasil yang seimbang.
+Kesimpulan Akhir
+
+Filter LPF menghasilkan gambar blur dengan menghilangkan detail frekuensi tinggi.
+Filter HPF mempertegas tepi dengan menolak frekuensi rendah sehingga hanya tepi yang jelas.
+Filter BPF menghasilkan gambar lebih tajam karena menggabungkan frekuensi tinggi dan rendah secara selektif.
+Ketiganya dioperasikan secara spasial dengan konvolusi kernel 3×3 dan secara frekuensi dengan filter sinyal berdasarkan domain Fourier.
